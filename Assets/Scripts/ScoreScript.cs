@@ -18,6 +18,7 @@ public class ScoreScript : MonoBehaviour
     void Update()
     {
         score.text = "Score:" + scoreValue;
+        //GetComponent<AudioSource>().Play();
         
     }
 }

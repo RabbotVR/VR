@@ -60,6 +60,7 @@ namespace VRStandardAssets.Examples
         {
             Debug.Log("Show click state");
             ScoreScript.scoreValue += 10;
+            GetComponent<AudioSource>().Play();
             m_Renderer.material = m_ClickedMaterial;
         }
 
