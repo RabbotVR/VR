@@ -13,7 +13,7 @@ public class ConstantRotate : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        transform.Rotate(-15, 0, 15);
+        transform.Rotate(-1, 0, 1);
 	}
 	
 	// Update is called once per frame
