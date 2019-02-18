@@ -1,6 +1,6 @@
-# VRLowPoly
+# RabbotVR
 
-Lowpoly VR scene to support better graphic performance on mobile.
-Still need to optimize.
+Thesis project exploring shared awareness in VR.
+By Yiyi Shao
 
-![](Capture.JPG)
+![](RabbotOnePage.JPG)
