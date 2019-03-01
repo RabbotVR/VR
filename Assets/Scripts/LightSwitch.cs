@@ -13,6 +13,15 @@ public class LightSwitch : MonoBehaviour
 }
     public void ToggleLight()
     {
-        myLight.enabled = !myLight.enabled;
+
+        //myLight.enabled = !myLight.enabled;
+       StartCoroutine(TimeLimit());
+    }
+    IEnumerator TimeLimit()
+    {
+        myLight.enabled = false;
+       
+        yield return new WaitForSeconds(10.0f);
+        myLight.enabled = true;
     }
 }
