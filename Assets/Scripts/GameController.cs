@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour {
 	public JoyStickerController JoyStick;
 	public SocketIOComponent socketIO;
 	public Player	playerGameObj;
+    public LightSwitch roomlight;
+   
 
 	void Start () {
 	
@@ -18,7 +20,10 @@ public class GameController : MonoBehaviour {
 		socketIO.On("PLAY", onUserPlay);
 		socketIO.On("MOVE", onUserMove);
 		socketIO.On("USER_DISCONNECTED", OnUserDisconnected );
-		Debug.Log("Game is start");
+        //////////////////////////////
+        socketIO.On("Light", OnLight);
+        //////////////////////////////
+        Debug.Log("Game is start");
 		JoyStick.gameObject.SetActive(false);
 		StartCoroutine( "CalltoServer" );
 		LoginPanel.plaBtn.onClick.AddListener(OnClickPlayBtn);
@@ -59,7 +64,18 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	void onUserPlay (SocketIOEvent obj)
+    void OnLight(SocketIOEvent obj)
+    {
+        // GameObject golight = GameObject.Find("RoomLight");
+        // LightSwitch toggle = (LightSwitch)golight.GetComponent((LightSwitch));
+        //toggle.ToggleLight();
+      //  roomlight.ToggleLight();
+        Debug.Log("Recived Light");
+        roomlight.ToggleLight();
+    }
+
+
+    void onUserPlay (SocketIOEvent obj)
 	{
 
 		LoginPanel.gameObject.SetActive(false);
