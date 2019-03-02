@@ -33,28 +33,28 @@ namespace VRStandardAssets.Menu
         }
 
 	    
-        void Update ()
-        {
-            // By default the target position of the child transform is unpopped.
-            m_TargetPosition = m_StartPosition;
+     //   void Update ()
+     //   {
+     //       // By default the target position of the child transform is unpopped.
+     //       m_TargetPosition = m_StartPosition;
 
-            // Go through each of the interactive items and for the one that the user is looking at, set the target position and rotation.
-	        for (int i = 0; i < m_Items.Length; i++)
-	        {
-	            if (!m_Items[i].IsOver)
-                    continue;
+     //       // Go through each of the interactive items and for the one that the user is looking at, set the target position and rotation.
+	    //    for (int i = 0; i < m_Items.Length; i++)
+	    //    {
+	    //        if (!m_Items[i].IsOver)
+     //               continue;
 
-	            m_TargetRotation = m_Items[i].transform.rotation;
-	            m_TargetPosition = m_PoppedPosition;
-	            break;
-	        }
+	    //        m_TargetRotation = m_Items[i].transform.rotation;
+	    //        m_TargetPosition = m_PoppedPosition;
+	    //        break;
+	    //    }
 
-            // Set the child's local position to be closer to it's target position based on the speed it should pop in and out.
-            m_ChildTransform.localPosition = Vector3.MoveTowards (m_ChildTransform.localPosition, m_TargetPosition,
-                m_PopSpeed * Time.deltaTime);
+     //       // Set the child's local position to be closer to it's target position based on the speed it should pop in and out.
+     //       m_ChildTransform.localPosition = Vector3.MoveTowards (m_ChildTransform.localPosition, m_TargetPosition,
+     //           m_PopSpeed * Time.deltaTime);
 
-            // Set the parent's rotation to align with whatever VRInteractiveItem is being looked at.
-            m_ParentTransform.rotation = Quaternion.Slerp(m_ParentTransform.rotation, m_TargetRotation, m_MoveSpeed * Time.deltaTime);
-	    }
+     //       // Set the parent's rotation to align with whatever VRInteractiveItem is being looked at.
+     //       m_ParentTransform.rotation = Quaternion.Slerp(m_ParentTransform.rotation, m_TargetRotation, m_MoveSpeed * Time.deltaTime);
+	    //}
     }
 }

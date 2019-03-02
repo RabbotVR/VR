@@ -68,18 +68,19 @@ namespace VRStandardAssets.Menu
         private IEnumerator ActivateButton()
         {
             // If the camera is already fading, ignore.
-            if (m_CameraFade.IsFading)
-                yield break;
+            //if (m_CameraFade.IsFading)
+            //   yield break;
 
             // If anything is subscribed to the OnButtonSelected event, call it.
             if (OnButtonSelected != null)
                 OnButtonSelected(this);
 
             // Wait for the camera to fade out.
-            yield return StartCoroutine(m_CameraFade.BeginFadeOut(true));
+            yield return StartCoroutine(m_CameraFade.BeginFadeOut(false));
+          //  yield return StartCoroutine(m_CameraFade.BeginFadeOut(true));
 
             // Load the level.
-            SceneManager.LoadScene(m_SceneToLoad, LoadSceneMode.Single);
+          //  SceneManager.LoadScene(m_SceneToLoad, LoadSceneMode.Single);
         }
     }
 }

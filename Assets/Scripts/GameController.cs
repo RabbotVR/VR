@@ -7,8 +7,8 @@ using SocketIO;
 public class GameController : MonoBehaviour {
 
 
-	public LoginPanelController LoginPanel;
-	public JoyStickerController JoyStick;
+//	public LoginPanelController LoginPanel;
+	//public JoyStickerController JoyStick;
 	public SocketIOComponent socketIO;
 	public Player	playerGameObj;
     public LightSwitch roomlight;
@@ -24,10 +24,10 @@ public class GameController : MonoBehaviour {
         socketIO.On("Light", OnLight);
         //////////////////////////////
         Debug.Log("Game is start");
-		JoyStick.gameObject.SetActive(false);
+		//JoyStick.gameObject.SetActive(false);
 		StartCoroutine( "CalltoServer" );
-		LoginPanel.plaBtn.onClick.AddListener(OnClickPlayBtn);
-		JoyStick.OnCommandMove += OnCommandMove;
+		//LoginPanel.plaBtn.onClick.AddListener(OnClickPlayBtn);
+		//JoyStick.OnCommandMove += OnCommandMove;
 	}
 
 	void OnCommandMove (Vector3 vec3)
@@ -48,21 +48,21 @@ public class GameController : MonoBehaviour {
 
 	}
 
-	void OnClickPlayBtn ()
-	{
-		if(LoginPanel.inputField.text != ""  ){
+	//void OnClickPlayBtn ()
+	//{
+	//	if(LoginPanel.inputField.text != ""  ){
 	
-			Dictionary<string, string> data = new Dictionary<string, string>();
-			data["name"] = LoginPanel.inputField.text;
-			Vector3 position  = new Vector3(0,0,0);
-			data["position"] = position.x+","+position.y+","+position.z;
-			socketIO.Emit("PLAY", new JSONObject(data));
+	//		Dictionary<string, string> data = new Dictionary<string, string>();
+	//		data["name"] = LoginPanel.inputField.text;
+	//	//	Vector3 position  = new Vector3(0,0,0);
+	//	//	data["position"] = position.x+","+position.y+","+position.z;
+	//		socketIO.Emit("PLAY", new JSONObject(data));
 
 
-		}else{
-			LoginPanel.inputField.text = "Please enter your name again ";
-		}
-	}
+	//	}else{
+	//		LoginPanel.inputField.text = "Please enter your name again ";
+	//	}
+	//}
 
     void OnLight(SocketIOEvent obj)
     {
@@ -78,9 +78,9 @@ public class GameController : MonoBehaviour {
     void onUserPlay (SocketIOEvent obj)
 	{
 
-		LoginPanel.gameObject.SetActive(false);
-		JoyStick.gameObject.SetActive(true);
-		JoyStick.ActivejooyStick();
+	//	LoginPanel.gameObject.SetActive(false);
+		//JoyStick.gameObject.SetActive(true);
+		//JoyStick.ActivejooyStick();
 
 		GameObject player =  GameObject.Instantiate( playerGameObj.gameObject, playerGameObj.position, Quaternion.identity) as GameObject;
 		Player playerCom = player.GetComponent<Player>();
@@ -88,7 +88,7 @@ public class GameController : MonoBehaviour {
 		playerCom.playerName = JsonToString( obj.data.GetField("name").ToString(), "\"");
 		player.transform.position = JsonToVecter3( JsonToString(obj.data.GetField("position").ToString(), "\"") );
 		playerCom.id = JsonToString(obj.data.GetField("id").ToString(), "\"");
-		JoyStick.playerObj = player;
+	//	JoyStick.playerObj = player;
 	}
 
 	void OnUserDisconnected (SocketIOEvent obj)

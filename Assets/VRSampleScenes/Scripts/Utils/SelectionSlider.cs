@@ -23,7 +23,7 @@ namespace VRStandardAssets.Utils
         [SerializeField] private VRInteractiveItem m_InteractiveItem;       // Reference to the VRInteractiveItem to determine when to fill the bar.
         [SerializeField] private VRInput m_VRInput;                         // Reference to the VRInput to detect button presses.
         [SerializeField] private GameObject m_BarCanvas;                    // Optional reference to the GameObject that holds the slider (only necessary if DisappearOnBarFill is true).
-        [SerializeField] private Renderer m_Renderer;                       // Optional reference to a renderer (unnecessary if using a UI slider).
+     //   [SerializeField] private Renderer m_Renderer;                       // Optional reference to a renderer (unnecessary if using a UI slider).
         [SerializeField] private SelectionRadial m_SelectionRadial;         // Optional reference to the SelectionRadial, if non-null the duration of the SelectionRadial will be used instead.
         [SerializeField] private UIFader m_UIFader;                         // Optional reference to a UIFader, used if the SelectionSlider needs to fade out.
         [SerializeField] private Collider m_Collider;                       // Optional reference to the Collider used to detect the user's gaze, turned off when the UIFader is not visible.
@@ -149,8 +149,8 @@ namespace VRStandardAssets.Utils
                 m_Slider.value = sliderValue;
 
             // If there is a renderer set the shader's property to the given slider value.
-            if(m_Renderer)
-                m_Renderer.sharedMaterial.SetFloat (k_SliderMaterialPropertyName, sliderValue);
+            //if(m_Renderer)
+            //    m_Renderer.sharedMaterial.SetFloat (k_SliderMaterialPropertyName, sliderValue);
         }
 
 
@@ -180,8 +180,8 @@ namespace VRStandardAssets.Utils
             m_GazeOver = true;
 
             // Play the clip appropriate for when the user starts looking at the bar.
-            m_Audio.clip = m_OnOverClip;
-            m_Audio.Play();
+      //      m_Audio.clip = m_OnOverClip;
+      //      m_Audio.Play();
         }
 
 
