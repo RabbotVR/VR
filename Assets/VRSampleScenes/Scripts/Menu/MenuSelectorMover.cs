@@ -9,11 +9,11 @@ namespace VRStandardAssets.Menu
     // This script moves the bar.
     public class MenuSelectorMover : MonoBehaviour
     {
-        [SerializeField] private float m_PopSpeed = 8f;         // How fast the bar pops in and out.
-        [SerializeField] private float m_PopDistance = 0.5f;    // How far the bar moves from it's normal position.
-        [SerializeField] private float m_MoveSpeed = 7f;        // How fast the bar moves to a new selection when the user changes what they are looking at.
+      //  [SerializeField] private float m_PopSpeed = 8f;         // How fast the bar pops in and out.
+      //  [SerializeField] private float m_PopDistance = 0.5f;    // How far the bar moves from it's normal position.
+      //  [SerializeField] private float m_MoveSpeed = 7f;        // How fast the bar moves to a new selection when the user changes what they are looking at.
         [SerializeField] private Transform m_ParentTransform;   // The parent object in the selector hierarchy, this has no visual element.
-        [SerializeField] private Transform m_ChildTransform;    // The child object in the selector hierarchy, this has a mesh renderer to display the bar.
+      //  [SerializeField] private Transform m_ChildTransform;    // The child object in the selector hierarchy, this has a mesh renderer to display the bar.
         [SerializeField] private VRInteractiveItem[] m_Items;   // The VRInteractiveItems that the user can look at to move the selector.
 
 
@@ -26,10 +26,10 @@ namespace VRStandardAssets.Menu
         void Awake ()
         {
             // Store the start position.
-            m_StartPosition = m_ChildTransform.localPosition;
+        //    m_StartPosition = m_ChildTransform.localPosition;
 
             // Calculate the popped position.
-            m_PoppedPosition = m_ChildTransform.localPosition - Vector3.forward * m_PopDistance;
+        //    m_PoppedPosition = m_ChildTransform.localPosition - Vector3.forward * m_PopDistance;
         }
 
 	    

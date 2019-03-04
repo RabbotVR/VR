@@ -42,8 +42,8 @@ namespace VRStandardAssets.Utils
 
         private void OnEnable ()
         {
-            m_VRInput.OnDown += HandleDown;
-            m_VRInput.OnUp += HandleUp;
+            m_InteractiveItem.OnDown += HandleDown;
+            m_InteractiveItem.OnUp += HandleUp;
 
             m_InteractiveItem.OnOver += HandleOver;
             m_InteractiveItem.OnOut += HandleOut;
@@ -178,16 +178,19 @@ namespace VRStandardAssets.Utils
         {
             // The user is now looking at the bar.
             m_GazeOver = true;
+         //   Debug.Log("Show over state");
 
             // Play the clip appropriate for when the user starts looking at the bar.
-      //      m_Audio.clip = m_OnOverClip;
-      //      m_Audio.Play();
+            m_Audio.clip = m_OnOverClip;
+            m_Audio.Play();
+           // Debug.Log("Show over state");
         }
 
 
         private void HandleOut ()
         {
             // The user is no longer looking at the bar.
+          //  Debug.Log("Show out state");
             m_GazeOver = false;
 
             // If the coroutine has been started (and thus we have a reference to it) stop it.

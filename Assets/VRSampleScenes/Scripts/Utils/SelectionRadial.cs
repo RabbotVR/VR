@@ -18,7 +18,7 @@ namespace VRStandardAssets.Utils
         [SerializeField] private bool m_HideOnStart = true;                                     // Whether or not the bar should be visible at the start.
         [SerializeField] private Image m_Selection;                                             // Reference to the image who's fill amount is adjusted to display the bar.
         [SerializeField] private VRInput m_VRInput;                                             // Reference to the VRInput so that input events can be subscribed to.
-        
+       // [SerializeField] private VRInteractiveItem m_InteractiveItem;
 
         private Coroutine m_SelectionFillRoutine;                                               // Used to start and stop the filling coroutine based on input.
         private bool m_IsSelectionRadialActive;                                                    // Whether or not the bar is currently useable.
@@ -30,15 +30,19 @@ namespace VRStandardAssets.Utils
 
         private void OnEnable()
         {
-            m_VRInput.OnDown += HandleDown;
-            m_VRInput.OnUp += HandleUp;
+         //   m_InteractiveItem.OnDown += HandleDown;
+           // m_InteractiveItem.OnUp += HandleUp;
+           m_VRInput.OnDown += HandleDown;
+           m_VRInput.OnUp += HandleUp;
         }
 
 
         private void OnDisable()
         {
-            m_VRInput.OnDown -= HandleDown;
-            m_VRInput.OnUp -= HandleUp;
+         //   m_InteractiveItem.OnDown -= HandleDown;
+         //   m_InteractiveItem.OnUp -= HandleUp;
+              m_VRInput.OnDown -= HandleDown;
+              m_VRInput.OnUp -= HandleUp;
         }
 
 
