@@ -16,9 +16,7 @@ namespace VRStandardAssets.Examples
 
         [SerializeField] private float m_Duration = 2f;
         [SerializeField] private Material m_NormalMaterial;                
-        [SerializeField] private Material m_OverMaterial;                  
-       // [SerializeField] private Material m_ClickedMaterial;               
-       // [SerializeField] private Material m_DoubleClickedMaterial;         
+        [SerializeField] private Material m_OverMaterial;                        
         [SerializeField] private VRInteractiveItem m_InteractiveItem;
         [SerializeField] private Renderer m_Renderer;
         ////////////////
@@ -38,7 +36,7 @@ namespace VRStandardAssets.Examples
         private Coroutine m_FillBarRoutine;
     
 
-        private const string k_SliderMaterialPropertyName = "_SliderValue";
+    //    private const string k_SliderMaterialPropertyName = "_SliderValue";
 
         void Start()
         {
@@ -54,54 +52,32 @@ namespace VRStandardAssets.Examples
 
         private void OnEnable()
         {
-            m_VRInput.OnDown += HandleDown;
-            m_VRInput.OnUp += HandleUp;
-           // m_InteractiveItem.OnDown += HandleDown;
-         //   m_InteractiveItem.OnUp += HandleUp;
+            m_InteractiveItem.OnDown += HandleDown;
+            m_InteractiveItem.OnUp += HandleUp;
+          //  m_VRInput.OnDown += HandleDown;
+         //  m_VRInput.OnUp += HandleUp;
+         //   m_SelectionRadial.OnSelectionComplete += HandleSelectionComplete;
+ 
             m_InteractiveItem.OnOver += HandleOver;
             m_InteractiveItem.OnOut += HandleOut;
-            //m_InteractiveItem.OnClick += HandleClick;
-            //   m_InteractiveItem.OnDoubleClick += HandleDoubleClick;
+     
 
         }
 
 
         private void OnDisable()
         {
-            m_VRInput.OnDown -= HandleDown;
-            m_VRInput.OnUp -= HandleUp;
-           // m_InteractiveItem.OnDown -= HandleDown;
-         //   m_InteractiveItem.OnUp -= HandleUp;
+      //    m_VRInput.OnDown += HandleDown;
+        //   m_VRInput.OnUp += HandleUp;
+          m_InteractiveItem.OnDown -= HandleDown;
+           m_InteractiveItem.OnUp -= HandleUp;
+          //  m_SelectionRadial.OnSelectionComplete -= HandleSelectionComplete;
+
             m_InteractiveItem.OnOver -= HandleOver;
             m_InteractiveItem.OnOut -= HandleOut;
-         //   m_InteractiveItem.OnClick -= HandleClick;
-         //   m_InteractiveItem.OnDoubleClick -= HandleDoubleClick;
+   
         }
 
-        /////////////////////////
-        public IEnumerator WaitForBarToFill()
-        {
-            // If the bar should disappear when it's filled, it needs to be visible now.
-            if (m_BarCanvas && m_DisappearOnBarFill)
-                m_BarCanvas.SetActive(true);
-
-            // Currently the bar is unfilled.
-            m_BarFilled = false;
-
-            // Reset the timer and set the slider value as such.
-            m_Timer = 0f;
-            SetSliderValue(0f);
-
-            // Keep coming back each frame until the bar is filled.
-            while (!m_BarFilled)
-            {
-                yield return null;
-            }
-
-            // If the bar should disappear once it's filled, turn it off.
-            if (m_BarCanvas && m_DisappearOnBarFill)
-                m_BarCanvas.SetActive(false);
-        }
         private IEnumerator FillBar()
         {
             // When the bar starts to fill, reset the timer.
@@ -117,7 +93,7 @@ namespace VRStandardAssets.Examples
                 m_Timer += Time.deltaTime;
 
                 // Set the value of the slider or the UV based on the normalised time.
-                SetSliderValue(m_Timer / fillTime);
+               // SetSliderValue(m_Timer / fillTime);
 
                 // Wait until next frame.
                 yield return null;
@@ -128,7 +104,7 @@ namespace VRStandardAssets.Examples
 
                 // If the user is no longer looking at the bar, reset the timer and bar and leave the function.
                 m_Timer = 0f;
-                SetSliderValue(0f);
+             //   SetSliderValue(0f);
                 yield break;
             }
 
@@ -142,24 +118,43 @@ namespace VRStandardAssets.Examples
             // Play the clip for when the bar is filled.
             m_Audio.clip = m_OnFilledClip;
             m_Audio.Play();
+            ScoreScript.scoreValue += 10;
+            //  Debug.Log("Filling");
 
-            // If the bar should be disabled once it is filled, do so now.
-            if (m_DisableOnBarFill)
-                enabled = false;
-        }
-        private void SetSliderValue(float sliderValue)
-        {
-            // If there is a slider component set it's value to the given slider value.
-            if (m_Slider)
-                m_Slider.value = sliderValue;
 
-            // If there is a renderer set the shader's property to the given slider value.
-            //if(m_Renderer)
-            //    m_Renderer.sharedMaterial.SetFloat (k_SliderMaterialPropertyName, sliderValue);
+
+            // If the bar should be disabled once it is filled, do so now. 
+            //this statement cause problem of setting radial back to normal
+      //      if (m_DisableOnBarFill)
+        //        enabled = false;
         }
+
 
         /////////////////////////
         //Handle the Over event
+
+        private void HandleDown()
+        {
+            // If the user is looking at the bar start the FillBar coroutine and store a reference to it.
+            if (m_GazeOver)
+                m_FillBarRoutine = StartCoroutine(FillBar());
+          //  ScoreScript.scoreValue += 10;
+             GetComponent<AudioSource>().Play();
+            Debug.Log("Show Down state");
+        }
+
+        private void HandleUp()
+        {
+            // If the coroutine has been started (and thus we have a reference to it) stop it.
+            if (m_FillBarRoutine != null)
+                StopCoroutine(m_FillBarRoutine);
+
+            // Reset the timer and bar values.
+            m_Timer = 0f;
+         //   SetSliderValue(0f);
+            Debug.Log("Show Up state");
+        }
+
         private void HandleOver()
         {
             Debug.Log("Show over state");
@@ -175,50 +170,48 @@ namespace VRStandardAssets.Examples
         private void HandleOut()
         {
             Debug.Log("Show out state");
+            m_GazeOver = false;
             m_SelectionRadial.Hide();
             m_Renderer.material = m_NormalMaterial;
-        }
-
-
-        //Handle the Click event
-        //private void HandleClick()
-        //{
-        //    Debug.Log("Show click state");
-        //    ScoreScript.scoreValue += 10;
-        //    GetComponent<AudioSource>().Play();
-        //    m_Renderer.material = m_ClickedMaterial;
-        //}
-
-
-        private void HandleDown()
-        {
-            // If the user is looking at the bar start the FillBar coroutine and store a reference to it.
-            if (m_GazeOver)
-                m_FillBarRoutine = StartCoroutine(FillBar());
-            ScoreScript.scoreValue += 10;
-            GetComponent<AudioSource>().Play();
-            Debug.Log("Show Down state");
-        }
-
-
-        private void HandleUp()
-        {
             // If the coroutine has been started (and thus we have a reference to it) stop it.
             if (m_FillBarRoutine != null)
                 StopCoroutine(m_FillBarRoutine);
 
             // Reset the timer and bar values.
             m_Timer = 0f;
-            SetSliderValue(0f);
-            Debug.Log("Show Up state");
+          //  SetSliderValue(0f);
         }
 
-        //Handle the DoubleClick event
-        //private void HandleDoubleClick()
+
+        //private void HandleSelectionComplete()
         //{
-        //    Debug.Log("Show double click");
-        //    m_Renderer.material = m_DoubleClickedMaterial;
+        //    // If the user is looking at the rendering of the scene when the radial's selection finishes, activate the button.
+        //    if (m_GazeOver)
+        //    {
+        //        // StartCoroutine(ActivateButton());
+        //        Debug.Log("Complete");
+        //        //  ScoreScript.scoreValue += 10;
+        //    }
         //}
+
+
+        //   private IEnumerator ActivateButton()
+        //   {
+        //     // If the camera is already fading, ignore.
+        //      if (m_CameraFade.IsFading)
+        //          yield break;
+
+        //    //  If anything is subscribed to the OnButtonSelected event, call it.
+        //       if (OnButtonSelected != null)
+        //          OnButtonSelected(this);
+
+        ////  Wait for the camera to fade out.
+        //        yield return StartCoroutine(m_CameraFade.BeginFadeOut(false));
+        //        yield return StartCoroutine(m_CameraFade.BeginFadeOut(true));
+
+        //  //     Load the level.
+        //        SceneManager.LoadScene(m_SceneToLoad, LoadSceneMode.Single);
+        //  }
     }
 
 }

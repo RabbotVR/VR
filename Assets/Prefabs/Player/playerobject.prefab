@@ -109,6 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_VRInput: {fileID: 3393549673716031573, guid: 0046fe037153db446b64983ad511bb16,
     type: 3}
+  m_SelectionRadial: {fileID: 3393549672643536050, guid: 0046fe037153db446b64983ad511bb16,
+    type: 3}
   m_Duration: 2
   m_NormalMaterial: {fileID: 2100000, guid: 896be834e8af18e4c9f1b8f0c1445ca6, type: 2}
   m_OverMaterial: {fileID: 2100000, guid: b6ccc692288afea4a8824eff92b12daf, type: 2}
@@ -118,10 +120,8 @@ MonoBehaviour:
   m_OnOverClip: {fileID: 8300000, guid: a4bbdfa44f5a01442a91d048ad800964, type: 3}
   m_OnFilledClip: {fileID: 8300000, guid: 3e70dd70a6d487b4ca9c050116796041, type: 3}
   m_BarCanvas: {fileID: 0}
-  m_DisableOnBarFill: 0
+  m_DisableOnBarFill: 1
   m_DisappearOnBarFill: 0
-  m_SelectionRadial: {fileID: 3393549672643536050, guid: 0046fe037153db446b64983ad511bb16,
-    type: 3}
   m_Slider: {fileID: 0}
 --- !u!114 &840419288
 MonoBehaviour:
