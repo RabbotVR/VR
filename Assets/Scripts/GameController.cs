@@ -26,9 +26,14 @@ public class GameController : MonoBehaviour {
         Debug.Log("Game is start");
 		//JoyStick.gameObject.SetActive(false);
 		StartCoroutine( "CalltoServer" );
-		//LoginPanel.plaBtn.onClick.AddListener(OnClickPlayBtn);
-		//JoyStick.OnCommandMove += OnCommandMove;
-	}
+        Dictionary<string, string> data = new Dictionary<string, string>();
+        ////////////////////////////////////////////////
+        data["name"] = "Rabbot" ;
+        socketIO.Emit("PLAY", new JSONObject(data));
+        ////////////////////////////////////////////////
+        //LoginPanel.plaBtn.onClick.AddListener(OnClickPlayBtn);
+        //JoyStick.OnCommandMove += OnCommandMove;
+    }
 
 	void OnCommandMove (Vector3 vec3)
 	{

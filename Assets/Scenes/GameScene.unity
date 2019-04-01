@@ -5681,7 +5681,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.654902, g: 0.14509805, b: 0.9843137, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -16404,7 +16404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: url
-      value: ws://192.168.0.100:3000/socket.io/?EIO=4&transport=websocket
+      value: ws://192.168.2.24:3000/socket.io/?EIO=4&transport=websocket
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 010d39cbd03ee4c99a746c1f8ecdc0d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17513,7 +17513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 836834318, guid: 8f96a228034f26346a79b49d85f5cd3d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.75
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 836834318, guid: 8f96a228034f26346a79b49d85f5cd3d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17521,7 +17521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 836834318, guid: 8f96a228034f26346a79b49d85f5cd3d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.3
+      value: -9.93
       objectReference: {fileID: 0}
     - target: {fileID: 836834318, guid: 8f96a228034f26346a79b49d85f5cd3d, type: 3}
       propertyPath: m_LocalRotation.x
