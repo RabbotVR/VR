@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GameIntro.unity
+    path: Assets/Scenes/GameIntro.unity
     guid: 409fe649e860d4b4794062be6e011335
   - enabled: 1
-    path: Assets/VRSampleScenes/Scenes/GameScene.unity
+    path: Assets/Scenes/GameScene.unity
     guid: d8067884ba0d5ab459a463e52199c016
   - enabled: 0
-    path: Assets/Controller.unity
+    path: 
     guid: 153535342141f4eda89a729b2b84c71c
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 1abbb92afb961894a88452f487b2113c
   m_configObjects: {}

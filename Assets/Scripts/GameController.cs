@@ -12,12 +12,13 @@ public class GameController : MonoBehaviour {
 	public SocketIOComponent socketIO;
 	public Player	playerGameObj;
     public LightSwitch roomlight;
+    public TimerScript timerScript;
    
 
 	void Start () {
 	
 		socketIO.On("USER_CONNECTED", OnUserConnected );
-		socketIO.On("PLAY", onUserPlay);
+		//socketIO.On("PLAY", onUserPlay);
 		socketIO.On("MOVE", onUserMove);
 		socketIO.On("USER_DISCONNECTED", OnUserDisconnected );
         //////////////////////////////
@@ -71,30 +72,28 @@ public class GameController : MonoBehaviour {
 
     void OnLight(SocketIOEvent obj)
     {
-        // GameObject golight = GameObject.Find("RoomLight");
-        // LightSwitch toggle = (LightSwitch)golight.GetComponent((LightSwitch));
-        //toggle.ToggleLight();
-      //  roomlight.ToggleLight();
+
         Debug.Log("Recived Light");
         roomlight.ToggleLight();
     }
 
 
-    void onUserPlay (SocketIOEvent obj)
-	{
+ //   void onUserPlay (SocketIOEvent obj)
+	//{
 
-	//	LoginPanel.gameObject.SetActive(false);
-		//JoyStick.gameObject.SetActive(true);
-		//JoyStick.ActivejooyStick();
+	////	LoginPanel.gameObject.SetActive(false);
+	//	//JoyStick.gameObject.SetActive(true);
+	//	//JoyStick.ActivejooyStick();
 
-		GameObject player =  GameObject.Instantiate( playerGameObj.gameObject, playerGameObj.position, Quaternion.identity) as GameObject;
-		Player playerCom = player.GetComponent<Player>();
+	//	GameObject player =  GameObject.Instantiate( playerGameObj.gameObject, playerGameObj.position, Quaternion.identity) as GameObject;
+	//	Player playerCom = player.GetComponent<Player>();
 
-		playerCom.playerName = JsonToString( obj.data.GetField("name").ToString(), "\"");
-		player.transform.position = JsonToVecter3( JsonToString(obj.data.GetField("position").ToString(), "\"") );
-		playerCom.id = JsonToString(obj.data.GetField("id").ToString(), "\"");
-	//	JoyStick.playerObj = player;
-	}
+	//	playerCom.playerName = JsonToString( obj.data.GetField("name").ToString(), "\"");
+	//	player.transform.position = JsonToVecter3( JsonToString(obj.data.GetField("position").ToString(), "\"") );
+	//	playerCom.id = JsonToString(obj.data.GetField("id").ToString(), "\"");
+
+	////	JoyStick.playerObj = player;
+	//}
 
 	void OnUserDisconnected (SocketIOEvent obj)
 	{
@@ -137,6 +136,7 @@ public class GameController : MonoBehaviour {
 		otherPlayerCom.playerName = JsonToString(obj.data.GetField("name").ToString(), "\"");
 		otherPlater.transform.position =  JsonToVecter3( JsonToString(obj.data.GetField("position").ToString(), "\"") );
 		otherPlayerCom.id = JsonToString(obj.data.GetField("id").ToString(), "\"");
+        timerScript.CountTrigger();
 
-	}
+    }
 }
