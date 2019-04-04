@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+
 namespace VRStandardAssets.Utils
 {
     // This class works similarly to the SelectionRadial class except
@@ -31,7 +32,7 @@ namespace VRStandardAssets.Utils
         [SerializeField] private bool m_DisappearOnBarFill;                 // Whether the bar should disappear instantly once it's been filled.
 
 
-        private bool m_BarFilled;                                           // Whether the bar is currently filled.
+        public bool m_BarFilled;                                           // Whether the bar is currently filled.
         private bool m_GazeOver;                                            // Whether the user is currently looking at the bar.
         private float m_Timer;                                              // Used to determine how much of the bar should be filled.
         private Coroutine m_FillBarRoutine;                                 // Reference to the coroutine that controls the bar filling up, used to stop it if required.
@@ -131,10 +132,15 @@ namespace VRStandardAssets.Utils
             // If anything has subscribed to OnBarFilled call it now.
             if (OnBarFilled != null)
                 OnBarFilled ();
+           
 
             // Play the clip for when the bar is filled.
             m_Audio.clip = m_OnFilledClip;
             m_Audio.Play();
+            LoadScene loadScene = GetComponent<LoadScene>();
+            loadScene.PlayGame();
+
+
 
             // If the bar should be disabled once it is filled, do so now.
             if (m_DisableOnBarFill)

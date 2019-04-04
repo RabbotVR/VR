@@ -6222,6 +6222,10 @@ PrefabInstance:
       propertyPath: m_MenuSceneName
       value: GameScene
       objectReference: {fileID: 0}
+    - target: {fileID: 120598, guid: ccf8c8cc05aad7b40a8deb4f73296da4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccf8c8cc05aad7b40a8deb4f73296da4, type: 3}
 --- !u!224 &1487780014

@@ -62,7 +62,7 @@ namespace VRStandardAssets.Examples
 
             }
 
-            Debug.Log(m_ReduceScoreTimer);
+           // Debug.Log(m_ReduceScoreTimer);
         }
 
    
