@@ -5629,6 +5629,98 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1 &797029430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797029431}
+  - component: {fileID: 797029434}
+  - component: {fileID: 797029433}
+  - component: {fileID: 797029432}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &797029431
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797029430}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1244085694}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &797029432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797029430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f76a72a6c0283844a4818be9be35c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &797029433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797029430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 29aefb354c7bf5f44bdb6724d5d2bf04, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &797029434
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797029430}
+  m_CullTransparentMesh: 0
 --- !u!1 &824249376
 GameObject:
   m_ObjectHideFlags: 0
@@ -5863,6 +5955,7 @@ RectTransform:
   m_Children:
   - {fileID: 84724687}
   - {fileID: 104172993}
+  - {fileID: 797029431}
   m_Father: {fileID: 1528763239}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6162,7 +6255,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1528763239}
   - component: {fileID: 1528763240}
-  - component: {fileID: 1528763241}
   m_Layer: 0
   m_Name: InstructionsGUI
   m_TagString: Untagged
@@ -6202,35 +6294,6 @@ MonoBehaviour:
   m_GroupsToFade:
   - {fileID: 1244085696}
   - {fileID: 788846015}
---- !u!114 &1528763241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528763238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0461d544138945b468d516467d6bd6da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TextComponent: {fileID: 84724688}
-  m_PlatformTextPairs:
-  - m_Platform: 0
-    m_Text: "Hello! Before we start, let's practice the control in VR!\n<b>LOOK AT</b>
-      INTERACTABLES, <b>HOLD FIRE*</b> TO SELECT\r\n\n\n\n\n\n<b>*LEFT MOUSE BUTTON</b>
-      OR <b>CTRL</b>"
-  - m_Platform: 2
-    m_Text: "Hello! Before we start, let's practice the control in VR!\n<b>LOOK AT</b>
-      INTERACTABLES, <b>HOLD FIRE*</b> TO SELECT\r\n\n\n\n\n\n<b>*LEFT MOUSE BUTTON</b>
-      OR <b>CTRL</b>"
-  - m_Platform: 7
-    m_Text: "Hello! Before we start, let's practice the control in VR!\n<b>LOOK AT</b>
-      INTERACTABLES, <b>HOLD FIRE*</b> TO SELECT\r\n\n\n\n<b>*LEFT MOUSE BUTTON</b>
-      OR <b>CTRL</b>"
-  - m_Platform: 11
-    m_Text: "Hello! Before we start, let's practice the control in VR!\n<b>LOOK AT</b>
-      INTERACTABLES, <b>HOLD*</b> TO SELECT\r\n\n\n\n<b>*Hold the GearVR TOUCHPAD</b>"
 --- !u!1 &1530708826
 GameObject:
   m_ObjectHideFlags: 0
@@ -6271,16 +6334,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1530708826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 487d4ec48d395804ebcbd7cb296ff93c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b595cb4ffa930948bef6afeff3d1257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Reticle: {fileID: 1806677642}
   m_Radial: {fileID: 1806677643}
   m_HowToUseFader: {fileID: 1528763240}
   m_HowToUseSlider: {fileID: 1138161144}
-  m_HowToUseConfirmFader: {fileID: 0}
-  m_HowToUseConfirmSlider: {fileID: 0}
-  m_ReturnFader: {fileID: 0}
 --- !u!1 &1544473573
 GameObject:
   m_ObjectHideFlags: 0
