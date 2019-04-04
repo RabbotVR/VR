@@ -33,6 +33,7 @@ namespace VRStandardAssets.Examples
         private bool m_BarFilled;                                           // Whether the bar is currently filled.
         private bool m_GazeOver;                                            // Whether the user is currently looking at the bar.
         private float m_Timer;                                              // Used to determine how much of the bar should be filled.
+        private float m_DeductionTimer;
         private Coroutine m_FillBarRoutine;
     
 
@@ -61,7 +62,7 @@ namespace VRStandardAssets.Examples
             m_InteractiveItem.OnOver += HandleOver;
             m_InteractiveItem.OnOut += HandleOut;
      
-
+ 
         }
 
 

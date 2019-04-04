@@ -13,9 +13,10 @@ public class GameController : MonoBehaviour {
 	public Player	playerGameObj;
     public LightSwitch roomlight;
     public TimerScript timerScript;
-   
+    public GameObject BlackOn;
+    public bool GameStart = false;
 
-	void Start () {
+    void Start () {
 	
 		socketIO.On("USER_CONNECTED", OnUserConnected );
 		//socketIO.On("PLAY", onUserPlay);
@@ -27,7 +28,8 @@ public class GameController : MonoBehaviour {
         Debug.Log("Game is start");
 		//JoyStick.gameObject.SetActive(false);
 		StartCoroutine( "CalltoServer" );
-        
+        BlackOn = GameObject.Find("Black");
+        BlackOn.SetActive(false);
         ////////////////////////////////////////////////
         // Dictionary<string, string> data = new Dictionary<string, string>();
         //data["name"] = "Rabbot" ;
@@ -37,7 +39,28 @@ public class GameController : MonoBehaviour {
         //JoyStick.OnCommandMove += OnCommandMove;
     }
 
-	void OnCommandMove (Vector3 vec3)
+    void Update()
+    {
+        if (GameObject.Find("ScientistB") != null && GameObject.Find("ScientistA") != null)
+        {
+            GameStart = true;
+        }
+        else
+        {
+            GameStart = false;
+        }
+        CheckGameStatus();
+    }
+
+    void CheckGameStatus()
+    {
+        if (GameStart == true)
+        {
+            //Debug.Log("Game start!!!!!!");
+            timerScript.CountTrigger();
+        }
+    }
+    void OnCommandMove (Vector3 vec3)
 	{
 		Dictionary<string, string> data = new Dictionary<string, string>();
 		Vector3 position = new Vector3( vec3.x,vec3.y,vec3.z );
@@ -77,6 +100,7 @@ public class GameController : MonoBehaviour {
 
         Debug.Log("Recived Light");
         roomlight.ToggleLight();
+ 
     }
     
     void SendUserName()
@@ -146,7 +170,7 @@ public class GameController : MonoBehaviour {
 		otherPlayerCom.playerName = JsonToString(obj.data.GetField("name").ToString(), "\"");
 		otherPlater.transform.position =  JsonToVecter3( JsonToString(obj.data.GetField("position").ToString(), "\"") );
 		otherPlayerCom.id = JsonToString(obj.data.GetField("id").ToString(), "\"");
-        timerScript.CountTrigger();
+        
 
     }
 }
