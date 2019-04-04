@@ -10,13 +10,13 @@ namespace VRStandardAssets.Examples
     // be used to change things on gameobjects by handling events.
     public class ExampleInteractiveItem : MonoBehaviour
     {
-       public event Action OnBarFilled;
-       public VRInput m_VRInput ;
-       public SelectionRadial m_SelectionRadial;
+        public event Action OnBarFilled;
+        public VRInput m_VRInput;
+        public SelectionRadial m_SelectionRadial;
 
         [SerializeField] private float m_Duration = 2f;
-        [SerializeField] private Material m_NormalMaterial;                
-        [SerializeField] private Material m_OverMaterial;                        
+        [SerializeField] private Material m_NormalMaterial;
+        [SerializeField] private Material m_OverMaterial;
         [SerializeField] private VRInteractiveItem m_InteractiveItem;
         [SerializeField] private Renderer m_Renderer;
         ////////////////
@@ -26,30 +26,59 @@ namespace VRStandardAssets.Examples
         [SerializeField] private GameObject m_BarCanvas;
         [SerializeField] private bool m_DisableOnBarFill;                   // Whether the bar should stop reacting once it's been filled (for single use bars).
         [SerializeField] private bool m_DisappearOnBarFill;                 // Whether the bar should disappear instantly once it's been filled.
-       // [SerializeField] private SelectionRadial m_SelectionRadial;
+                                                                            // [SerializeField] private SelectionRadial m_SelectionRadial;
         [SerializeField] private Slider m_Slider;
-       // [SerializeField] private VRInput m_VRInput;
+        // [SerializeField] private VRInput m_VRInput;
 
         private bool m_BarFilled;                                           // Whether the bar is currently filled.
         private bool m_GazeOver;                                            // Whether the user is currently looking at the bar.
-        private float m_Timer;                                              // Used to determine how much of the bar should be filled.
-        private float m_DeductionTimer;
-        private Coroutine m_FillBarRoutine;
-    
 
-    //    private const string k_SliderMaterialPropertyName = "_SliderValue";
+        private float m_Timer;                                              // Used to determine how much of the bar should be filled.
+        private float m_ReduceScoreTimer = 10.0f;
+        private Coroutine m_FillBarRoutine;
+
+
+        //    private const string k_SliderMaterialPropertyName = "_SliderValue";
 
         void Start()
         {
             m_VRInput = GameObject.Find("MainCamera").GetComponent<VRInput>();
             m_SelectionRadial = GameObject.Find("MainCamera").GetComponent<SelectionRadial>();
         }
-        private void Awake ()
+        private void Awake()
         {
             m_Renderer.material = m_NormalMaterial;
-      
+
+        }
+        void Update()
+        {
+            ReduceScore();
+           // int myScore = Mathf.RoundToInt(m_ReduceScoreTimer);
+            if (m_ReduceScoreTimer < 0)
+            {
+
+                ScoreScript.scoreValue -= 10;
+                m_ReduceScoreTimer = 10.0f;
+
+            }
+
+            Debug.Log(m_ReduceScoreTimer);
         }
 
+   
+
+
+            void ReduceScore()
+        {
+            if (m_GazeOver == false)
+            {
+                m_ReduceScoreTimer -= Time.deltaTime;
+            }
+            else
+            {
+                m_ReduceScoreTimer = 10.0f;
+            }
+        }
 
         private void OnEnable()
         {
@@ -154,6 +183,7 @@ namespace VRStandardAssets.Examples
             m_Timer = 0f;
          //   SetSliderValue(0f);
             Debug.Log("Show Up state");
+            m_ReduceScoreTimer = 0.0f;
         }
 
         private void HandleOver()
@@ -180,7 +210,9 @@ namespace VRStandardAssets.Examples
 
             // Reset the timer and bar values.
             m_Timer = 0f;
-          //  SetSliderValue(0f);
+            //  SetSliderValue(0f);
+           
+
         }
 
 
